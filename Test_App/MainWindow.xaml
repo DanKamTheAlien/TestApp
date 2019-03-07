@@ -5,14 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:Test_App"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="400" MinHeight="450" MinWidth="400">
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Button Content="Settings" />
+            <Button Click="button2_Click">
+                <StackPanel Orientation="Horizontal">
+                    <iconPacks:PackIconModern Width="24" Height="24" Kind="Trophy" />
+                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="About" />
+                </StackPanel>
+            </Button>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
     <DockPanel>
-        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Margin="2,5">
-            <Button Name="btnPreviousTab" Click="btnPreviousTab_Click">Prev.</Button>
-            <Button Name="btnNextTab" Click="btnNextTab_Click">Next</Button>
-            <Button Name="btnSelectedTab" Click="btnSelectedTab_Click">Selected</Button>
-        </StackPanel>
         <TabControl Name="tcSample" >
             <TabItem Header="Configuration">
                 <StackPanel HorizontalAlignment="Right">
@@ -29,6 +36,7 @@
             </TabItem>
             <TabItem Header="Scripts" />
             <TabItem Header="FUT" />
+            
         </TabControl>
 
     </DockPanel>

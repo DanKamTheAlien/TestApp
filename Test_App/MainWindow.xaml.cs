@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
 using MahApps.Metro.Controls;
+using System.IO;
 
 namespace Test_App
 {
@@ -30,6 +31,7 @@ namespace Test_App
         {
             InitializeComponent();
         }
+
         private void btnPreviousTab_Click(object sender, RoutedEventArgs e)
         {
             int newIndex = tcSample.SelectedIndex - 1;
@@ -61,6 +63,17 @@ namespace Test_App
             Putty.StartInfo.Arguments = $"-ssh root@{userLogin}"; // If you have any arguments
 
             bool result = Putty.Start();
+        }
+        private void button2_Click(object sender, RoutedEventArgs e)
+        {
+            string path = @"C:\Test\MyTest.txt";
+            MessageBox.Show(Application.Current.MainWindow,"Version 2","Version");
+            // Create a file to write to.
+            string createText = "Hello and Welcome" + Environment.NewLine;
+            File.WriteAllText(path, createText);
+            // Open the file to read from.
+            string readText = File.ReadAllText(path);
+            Console.WriteLine(readText);
         }
     }
 }
