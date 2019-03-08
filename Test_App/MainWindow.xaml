@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:Test_App"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="400" MinHeight="450" MinWidth="400">
+        Title="MainWindow" Height="450" Width="450" MinHeight="450" MinWidth="400">
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
             <Button Content="Settings" />
@@ -36,8 +36,20 @@
             </TabItem>
             <TabItem Header="Scripts" />
             <TabItem Header="FUT" />
-            
+            <TabItem Header="Settings">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="24*"/>
+                        <ColumnDefinition Width="85*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Margin="0,0,0,332" Grid.ColumnSpan="2" Text="GGG IP Address"/>
+                    <TextBox x:Name="IP" Margin="-1,23,268,322" Grid.ColumnSpan="2" />
+                    <Button Click="button3_Click" Margin="77,23,167,323" Grid.Column="1">Save</Button>
+                </Grid>
+            </TabItem>
+
         </TabControl>
 
     </DockPanel>
-    </Controls:MetroWindow>
+</Controls:MetroWindow>

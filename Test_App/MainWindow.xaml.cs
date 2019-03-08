@@ -26,32 +26,25 @@ namespace Test_App
       
 
         private static string userLogin;
-
+        public static string path=@"c:\test\IpAddress.txt";
         public MainWindow()
         {
             InitializeComponent();
+            string path = @"c:\test\IpAddress.txt";
+
+            // This text is added only once to the file.
+            if (!File.Exists(path1))
+            {
+                // Create a file to write to.
+                string createText = "192.168.0.146" + Environment.NewLine;
+                File.WriteAllText(path1, createText);
+            }
+            string readText = File.ReadAllText(path1);
+            IP.Text = readText;
+
+
         }
 
-        private void btnPreviousTab_Click(object sender, RoutedEventArgs e)
-        {
-            int newIndex = tcSample.SelectedIndex - 1;
-            if (newIndex < 0)
-                newIndex = tcSample.Items.Count - 1;
-            tcSample.SelectedIndex = newIndex;
-        }
-
-        private void btnNextTab_Click(object sender, RoutedEventArgs e)
-        {
-            int newIndex = tcSample.SelectedIndex + 1;
-            if (newIndex >= tcSample.Items.Count)
-                newIndex = 0;
-            tcSample.SelectedIndex = newIndex;
-        }
-
-        private void btnSelectedTab_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Selected tab: " + (tcSample.SelectedItem as TabItem).Header);
-        }
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
@@ -66,14 +59,23 @@ namespace Test_App
         }
         private void button2_Click(object sender, RoutedEventArgs e)
         {
-            string path = @"C:\Test\MyTest.txt";
+          //  string path = @"C:\Test\MyTest.txt";
+          //  userLogin = LoginName.Text;
             MessageBox.Show(Application.Current.MainWindow,"Version 2","Version");
             // Create a file to write to.
-            string createText = "Hello and Welcome" + Environment.NewLine;
-            File.WriteAllText(path, createText);
+           // string createText = $"{userLogin}" + Environment.NewLine;
+            //File.WriteAllText(path, createText);
             // Open the file to read from.
-            string readText = File.ReadAllText(path);
-            Console.WriteLine(readText);
+           // string readText = File.ReadAllText(path);
+           // Console.WriteLine(readText);
         }
-    }
+        private void button3_Click(object sender, RoutedEventArgs e)
+        {
+            userLogin = IP.Text;
+            string path = @"c:\test\IpAddress.txt";
+            string createText = $"{userLogin}" + Environment.NewLine;
+            File.WriteAllText(path, createText);
+            string readText = File.ReadAllText(path);
+        }
+        }
 }
