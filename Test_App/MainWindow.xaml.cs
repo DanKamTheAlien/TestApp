@@ -30,16 +30,16 @@ namespace Test_App
         public MainWindow()
         {
             InitializeComponent();
-            string path = @"c:\test\IpAddress.txt";
+            
 
             // This text is added only once to the file.
-            if (!File.Exists(path1))
+            if (!File.Exists(path))
             {
                 // Create a file to write to.
                 string createText = "192.168.0.146" + Environment.NewLine;
-                File.WriteAllText(path1, createText);
+                File.WriteAllText(path, createText);
             }
-            string readText = File.ReadAllText(path1);
+            string readText = File.ReadAllText(path);
             IP.Text = readText;
 
 
@@ -48,12 +48,12 @@ namespace Test_App
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            userLogin = LoginName.Text;
+            string readText = File.ReadAllText(path);
             Console.WriteLine($"After method call, value of a : {userLogin}");
             Process Putty = new Process();
 
             Putty.StartInfo.FileName = "putty.exe"; // Needs to be full path
-            Putty.StartInfo.Arguments = $"-ssh root@{userLogin}"; // If you have any arguments
+            Putty.StartInfo.Arguments = $"-ssh root@{readText}"; // If you have any arguments
 
             bool result = Putty.Start();
         }
@@ -72,10 +72,15 @@ namespace Test_App
         private void button3_Click(object sender, RoutedEventArgs e)
         {
             userLogin = IP.Text;
-            string path = @"c:\test\IpAddress.txt";
             string createText = $"{userLogin}" + Environment.NewLine;
             File.WriteAllText(path, createText);
             string readText = File.ReadAllText(path);
         }
+        private void button4_Click(object sender, RoutedEventArgs e)
+        {
+            string path = @"c:\MyDir";
+            DirectoryInfo di = Directory.CreateDirectory(path);
+            Console.WriteLine("The directory was created successfully at {0}.", Directory.GetCreationTime(path));
         }
+    }
 }
