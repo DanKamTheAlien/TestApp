@@ -7,11 +7,11 @@
         xmlns:local="clr-namespace:Test_App"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="450" MinHeight="450" MinWidth="400">
+        Title="Test App" Height="450" Width="450" MinHeight="450" MinWidth="400">
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
             <Button Content="Settings" />
-            <Button Click="button2_Click">
+            <Button Click="about_Click">
                 <StackPanel Orientation="Horizontal">
                     <iconPacks:PackIconModern Width="24" Height="24" Kind="Trophy" />
                     <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="About" />
@@ -23,16 +23,23 @@
         <TabControl Name="tcSample" >
             <TabItem Header="Home">
                 <StackPanel HorizontalAlignment="Right">
-                    <Button>Test Connection</Button>
-                    <Button>Create GData</Button>
-                    <Button>Button 3</Button>
-                    <Button x:Name="GData" Click="button4_Click" Foreground="Red" Content="Create GData" Background="#3f77cc" />
+                    <Button x:Name="TestConnect" Click="ping_Click" Content="Test Connection" />
+                    <Button x:Name="GData" Click="gdata_Click" Foreground="Red" Content="Create GData" Background="#3f77cc" />
                     <Grid Margin="10"/>
-                    <Button x:Name="activation" Click="button1_Click" Foreground="Red" Content="Putty" Background="#3f77cc" />
+                    <Button x:Name="activation" Click="putty_Click" Foreground="Red" Content="Putty" Background="#3f77cc" />
                 </StackPanel>
 
             </TabItem>
-            <TabItem Header="Scripts" />
+            <TabItem Header="Scripts">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="24*"/>
+                        <ColumnDefinition Width="85*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Click="ShowInputDialog" Margin="77,23,167,323" Grid.Column="1">Test</Button>
+                </Grid>
+            </TabItem>
             <TabItem Header="Settings">
 
                 <Grid>
@@ -40,11 +47,13 @@
                         <ColumnDefinition Width="24*"/>
                         <ColumnDefinition Width="85*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Margin="0,0,0,332" Grid.ColumnSpan="2" Text="GGG IP Address"/>
+                    <TextBlock Margin="0,0,303,356" Text="Current GGG IP Address:" Grid.ColumnSpan="2"/>
                     <TextBox x:Name="IP" Margin="-1,23,268,322" Grid.ColumnSpan="2" />
-                    <Button Click="button3_Click" Margin="77,23,167,323" Grid.Column="1">Save</Button>
+                    <TextBlock x:Name="currentIP" TextWrapping="Wrap" Text="TextBlock" Margin="42,0,212,358" Grid.Column="1"/>
+                    <Button Click="ip_save_Click" Margin="77,23,167,323" Grid.Column="1">Save</Button>
                 </Grid>
             </TabItem>
+
 
         </TabControl>
 
